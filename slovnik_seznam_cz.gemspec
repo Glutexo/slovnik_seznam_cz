@@ -1,10 +1,10 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'slovnik_cz/version'
+require 'slovnik_seznam_cz/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'slovnik_seznam_cz'
-  spec.version       = SlovnikCz::VERSION
+  spec.version       = SlovnikSeznamCz::VERSION
   spec.authors       = ['Glutexo']
   spec.email         = ['glutexo@icloud.com']
 
