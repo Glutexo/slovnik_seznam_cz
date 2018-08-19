@@ -1,5 +1,3 @@
-require "slovnik_seznam_cz/version"
-
 module SlovnikSeznamCz
-  # Your code goes here...
+  VERSION = '0.0.1'.freeze
 end
