@@ -1,21 +1,15 @@
-require 'open-uri'
 require 'nokogiri'
 require 'set'
+require 'slovnik_seznam_cz/loader'
 
 module SlovnikSeznamCz
   class Translator
-    BASE_URI = URI('https://slovnik.seznam.cz/')
-
     def initialize(language)
       @language = language
     end
 
     def translate(word)
-      uri = BASE_URI.clone
-      uri.path = "/#{@language}/"
-      uri.query = URI.encode_www_form(q: word)
-
-      open(uri.to_s) do |file|
+      Loader.load(@language, word) do |file|
         doc = Nokogiri::HTML(file)
         as = doc.css('#fastMeanings a')
 
