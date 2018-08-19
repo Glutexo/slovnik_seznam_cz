@@ -1,6 +1,5 @@
-require 'nokogiri'
-require 'set'
 require 'slovnik_seznam_cz/loader'
+require 'slovnik_seznam_cz/result'
 
 module SlovnikSeznamCz
   class Translator
@@ -10,13 +9,10 @@ module SlovnikSeznamCz
 
     def translate(word)
       Loader.load(@language, word) do |file|
-        doc = Nokogiri::HTML(file)
-        as = doc.css('#fastMeanings a')
-
+        result = Result.new(file)
         translations = []
-        as.each do |a|
-          translation = a.text
-          translations << translation unless translations.include?(translation)
+        result.translations do |translation|
+          translations << translation
         end
 
         translations
