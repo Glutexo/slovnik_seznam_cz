@@ -7,9 +7,18 @@ module SlovnikSeznamCz
     end
 
     def translations
-      as = @doc.css('#fastMeanings a')
-      as.each do |a|
-        yield a.text
+      elements = @doc.css('#fastMeanings').children
+      words = []
+      elements.each do |element|
+        case element.name
+        when 'a'
+          words << element.text
+        when 'br'
+          yield words
+          words = []
+        else
+          next
+        end
       end
     end
   end
